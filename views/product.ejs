@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+    .card-body{
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+  }
+  
+    #cart{
+      visibility: hidden
+    }
+    @media only screen and (max-width: 880px) {
+      #cart{
+        visibility: visible;
+        float: right;
+      
+        
+      }
+
+}
+  
+  </style>
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.15/jspdf.plugin.autotable.min.js"></script>
+  <link href="https://getbootstrap.com/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-md-8">
+        <a href="#table" class="btn btn-success" style="width: fit-content;height: fit-content;"id="cart">GoToCart</a>
+        <h2>Products</h2>
+        <div class="row" id="products">
+          <% products.forEach(product => { %>
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <img src="data:image/jpeg;base64,<%= product.images.data.toString('base64') %>"  style="width:100px;height:100px;" class="img-fluid">
+                  <h5 class="card-title"><%= product.name %></h5>
+                  <p class="card-text">₹<%= product.price %></p>
+                  <button class="btn btn-success" onclick="addToCart('<%= product._id %>', '<%= product.name %>',' <%= product.price %>')">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card card2">
+                        <div class="card-header"><b>Shopping Cart</b></div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+        <h2>Shopping Cart</h2>
+        <table class="table" id="table">
+          <thead>
+            <tr>
+              <th>Product Name</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="cart-items">
+            <!-- Cart items will be displayed here -->
+          </tbody>
+          <tfoot>
+            <tr>
+              <td></td>
+              <td>Total:</td>
+              
+              <td id="total-price">₹0</td>
+              <td></td>
+            </tr>
+          </tfoot>
+        </table>
+        
+        <button onclick="generatePDF()" class="btn btn-success">Download PDF</button>                
+      </div>
+    </div>
+  </div>
+  <script>
+    function generatePDF() {
+      const doc = new jsPDF();
+  
+      const table = document.getElementById("table");
+      const columnsToInclude = [0, 1, 2]; // Indexes of the columns to include in the PDF
+  
+      
+      const data = [];
+  
+     
+      const headerData = [];
+      for (let i = 0; i < columnsToInclude.length; i++) {
+        const cell = table.rows[0].cells[columnsToInclude[i]];
+        headerData.push(cell ? cell.innerText : ""); 
+      }
+      data.push(headerData);
+  
+      
+      for (let i = 1; i < table.rows.length; i++) {
+        const rowData = [];
+        for (let j = 0; j < columnsToInclude.length; j++) {
+          const cell = table.rows[i].cells[columnsToInclude[j]];
+          rowData.push(cell ? cell.innerText : ""); 
+        }
+        data.push(rowData);
+      }
+  
+     
+      const columnWidths = [40, 30, 40]; 
+  
+      doc.autoTable({
+        head: [data[0]],
+        body: data.slice(1),
+        startY: 20,
+        styles: { overflow: 'linebreak', columnWidth: 'wrap' },
+        columnStyles: {
+          0: { columnWidth: columnWidths[0] },
+          1: { columnWidth: columnWidths[1] },
+          2: { columnWidth: columnWidths[2] },
+         
+        }
+      });
+  
+      doc.save("table.pdf");
+    }
+  
+  
+    function remove_item(productId) {
+      event.preventDefault();
+  
+      if (confirm("Are you sure you want to remove it?")) {
+        
+        window.location.href = `/remove_items/${productId}?cart=${JSON.stringify(cart)}`;
+      }
+    }
+  
+  
+  
+  </script>
+  <script>
+    function addToCart(productId, productName, productPrice) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let existingItem = cart.find(item => item.productId === productId);
+
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({ productId, productName, productPrice, quantity: 1 });
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartUI();
+    }
+
+    function removeCartItem(productId) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let existingItem = cart.find(item => item.productId === productId);
+
+      if (existingItem) {
+        if (existingItem.quantity > 1) {
+          existingItem.quantity -= 1;
+        } else {
+          cart = cart.filter(item => item.productId !== productId);
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartUI();
+      }
+    }
+
+    function updateCartUI() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const cartItems = document.getElementById('cart-items');
+      const totalPriceElement = document.getElementById('total-price');
+
+      cartItems.innerHTML = '';
+      let total = 0;
+
+      cart.forEach(item => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${item.productName}</td>
+          <td>₹${item.productPrice}</td>
+          <td>${item.quantity}</td>
+          <td>
+            <button class="btn btn-danger" onclick="removeCartItem('${item.productId}')">Remove</button>
+          </td>
+        `;
+        cartItems.appendChild(row);
+
+        total += item.productPrice * item.quantity;
+      });
+
+      totalPriceElement.textContent = `₹${total}`;
+    }
+
+    updateCartUI();
+  </script>
+</body>
+</html>

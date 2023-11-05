@@ -1,0 +1,212 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    @media only screen and (max-width: 880px) {
+      body {
+      font-family: Arial, sans-serif;
+    
+      background-color: #ffffff;
+    }
+      .entire{
+
+     align-items: center;
+     justify-content: center;
+     margin: 0 auto;
+
+     width: 100%;
+     display: flex;
+     flex-wrap: wrap;
+ 
+    
+   
+      }
+      .container{
+        position: relative;
+
+       margin: 10px;
+       left:60px
+      }
+    }
+    body {
+      font-family: Arial, sans-serif;
+     
+      background-color: #f8f9fa;
+    }
+    .reg{
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at -1% 57.5%, rgb(19, 170, 82) 0%, rgb(0, 102, 43) 90%);
+      -webkit-text-fill-color: transparent;
+       -webkit-background-clip: text;
+    }
+    #userType{
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      outline: none;
+     
+    }
+
+    .container {
+      margin: 30px;
+      float:right;
+      background-color: #ffffff;
+      padding: 70px;
+      border-radius: 8px;
+      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 300px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #343a40;
+    }
+
+    form {
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #343a40;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      outline: none;
+    }
+
+    button {
+      background-color: #007bff;
+      color: #fff;
+      padding: 12px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    a {
+      display: block;
+      margin-top: 15px;
+      color: #007bff;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .contain{
+      float:left;
+     
+    }
+    img{
+width: 600px;
+height: 700px;;
+
+   
+
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+
+<body>
+  <div class="entire">
+  <div class="contain">
+    <img src="./img/login.jpg" alt="img">
+  </div>
+  <div class="container">
+    <h1>Login</h1>
+    <h2 class=reg><%= textToDisplay %></h2>
+    <form id="loginForm" action="/login" method="POST">
+      <label for="Email">EmailID:</label>
+      <input type="email" id="Email" name="Email" required>
+      <label for="Password">Password:</label>
+      
+      <input type="password" id="Password" name="Password" required>
+      <label for="userType">Select User Type:</label>
+      <select id="userType" name='userType' onchange="toggleSecretField()">
+          <option value="User" name='userType'>User</option>
+          <option value="Admin" name='userType'>Admin</option>
+      </select>
+      
+      <div id="secretKey" style="display: none;">
+          <label for="secretKey">Enter Secret Key:</label>
+          <input type="password" id="secretKey" name="secretKey">
+      </div>
+      
+      <script>
+      function toggleSecretField() {
+          var userTypeSelect = document.getElementById("userType");
+          var secretField = document.getElementById("secretKey");
+      
+          if (userTypeSelect.value === "Admin") {
+              secretField.style.display = "block";
+          } else {
+              secretField.style.display = "none";
+          }
+      }
+      </script>
+      <button type="submit" onclick="submitForm()" >Login</button>
+      
+    </form>
+   
+   
+    
+    <a href="/register">New User? Register Here</a>
+  </div>
+</div>
+    
+  <script>
+    function submitForm() {
+        const form = document.getElementById("loginForm");
+        const formData = new FormData(form);
+
+        fetch("/login", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            if (data === "success") {
+                // Redirect to another page on successful login
+                window.location.href = "/store"; // Change to your desired URL
+            }
+             else {
+                // Update error message for incorrect password
+                const errorMessage = document.getElementById("error-message");
+                errorMessage.innerText = "Username or password is incorrect";
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+    }
+</script>
+</body>
+</html>
+
+
+    
+

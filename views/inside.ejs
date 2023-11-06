@@ -816,8 +816,13 @@ input[type=file]::file-selector-button:hover {
 				<li><a href="https://youtube.com/@zappyphotography6864?si=v22xcj4-VFXHbz7R" target="_blank"><i class="fab fa-youtube"></i></a></li>
 				<li><a href="https://www.instagram.com/zappyphotography/?igshid=MzRlODBiNWFlZA%3D%3D" target="_blank"><i class="fab fa-instagram"></i></a></li>
 				<li><a href="https://www.facebook.com/mohan.raj.902266/?show_switched_toast=0&show_invite_to_follow=0&show_switched_tooltip=0&show_podcast_settings=0&show_community_review_changes=0&show_community_rollback=0&show_follower_visibility_disclosure=0" target="_blank"><i class="fab fa-facebook"></i></a></li>
-				<li><a href="photographyzappy@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a></li>
+				<li><a href="mailto:photographyzappy@gmail.com"><i class="fas fa-envelope"></i></a></li>
 			</ul>
+                        <script>
+				document.getElementsByClassName('fas fa-envelope').addEventListener('click', function() {
+					window.location.href = 'mailto:photographyzappy@gmail.com';
+				});
+			</script>
 		</div>
 	</div>
 </footer>

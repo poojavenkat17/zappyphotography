@@ -36,148 +36,171 @@
       <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,500&display=swap" rel="stylesheet">
     
 <title>Moments</title>
-<style>@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,500,300,700);
 
-	footer{
-	  font-family: 'Titillium Web', sans-serif;
-	  font-size:12px;
-	  color:#411F1F}
-	
-	
-	.footer-distributed{
-		background: #F3F3F3;
-		box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
-		box-sizing: border-box;
-		width: 100%;
-		text-align: left;
-		font: bold 16px sans-serif;
-		padding: 55px 50px;
-	}
-	
-	.footer-distributed .footer-left,
-	.footer-distributed .footer-center,
-	.footer-distributed .footer-right{
-		display: inline-block;
-	
-	}
-	
-	/* Footer left */
-	
-	.footer-distributed .footer-left{
-		width: 40%;
-	}
-	
-	/* The company logo */
-	
-	.footer-distributed h3{
-		
-		font: normal 39px 'Open Sans', cursive;
-		margin: 0;
-	
-	}
-	
-	/* Footer links */
-	
-	.footer-distributed .footer-links{
-		color: #411F1F;;
-		margin: 0;
-		font-size:15px;
-	 
-		padding: 0;
-	}
-	
-	.footer-distributed .footer-links a{
-		display:inline-block;
-		line-height: 1.8;
-	  font-weight:400;
-		text-decoration: none;
-		color:  inherit;
-	}
-	
-	.footer-distributed .footer-company-name{
-		color:  #222;
-		font-size: 14px;
-		font-weight: normal;
-		margin: 0;
-	}
-/* patchwork */
-  @media (max-width: 991.98px){
-.legacy-style.theme-theme4 .font_theme-0 h2 {
-    font-size: 1.5rem;
-    margin-left: 14px;
-    letter-spacing: .188rem;
-    line-height: 1.33;
+    <style> @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,500,300,700);
+
+        footer {
+            font-family: 'Titillium Web', sans-serif;
+            font-size: 12px;
+            color: #411F1F;
+        }
+        .footer-distributed .footer-links a:before {
+    content: "|";
+    font-weight: 30;
+    font-size: 20px;
+    left: 0;
+    color: #411F1F;
+    display: inline-block;
+    padding-right: 3px;
 }
+
+        .footer-distributed {
+            background: #F3F3F3;
+            box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+            box-sizing: border-box;
+            width: 100%;
+            text-align: left;
+            font: bold 16px sans-serif;
+            padding: 55px 10px; /* Adjust the padding for smaller screens */
+        }
+
+        .footer-distributed .footer-left {
+            width: 100%; /* Change the width for smaller screens */
+        }
+
+        .footer-distributed h3 {
+            font: normal 39px 'Open Sans', cursive;
+            margin: 0;
+        }
+
+        .footer-distributed .footer-links {
+            color: #411F1F;
+            margin: 0;
+            font-size: 15px;
+            padding: 0;
+        }
+
+        .footer-distributed .footer-links a {
+            display: inline-block;
+            line-height: 1.8;
+            font-weight: 400;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .footer-distributed .footer-company-name {
+            color: #222;
+            font-size: 14px;
+            font-weight: normal;
+            margin: 0;
+        }
+
+        .copyrights {
+            width: 100%;
+            height: 20px;
+            background-color: #411F1F;
+        }
+
+        .social-menu ul {
+            position: relative; /* Change to relative for smaller screens */
+            margin: 0;
+            padding: 0;
+            text-align: left; /* Center the icons for smaller screens */
+        }
+
+        .social-menu ul li {
+            list-style: none;
+            margin: 0 10px; /* Adjust margin for smaller screens */
+            display: inline; /* Display icons in a line for smaller screens */
+        }
+
+        .social-menu ul li .fab {
+            font-size: 16px;
+            line-height: 28px;
+            transition: 0.3s;
+            color: #411F1F;
+            text-align: left;
+            padding-left: 1px;
+        }
+
+        .social-menu ul li .fas {
+            font-size: 16px;
+            line-height: 28px;
+            transition: 0.3s;
+            color: #411F1F;
+            text-align: left;
+            padding-left: 1px;
+        }
+
+        .social-menu ul li .fab:hover {
+            color: #fff;
+        }
+
+        .social-menu ul li a {
+            position: relative;
+            display: inline-block; /* Display icons inline for smaller screens */
+			color: #411F1F;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background-color: #fff;
+            text-align: center;
+            transition: 0.6s;
+            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+			padding-top: 4px ;
+        }
+
+        .social-menu ul li a:hover {
+            transform: translate(0, -10%);
+			color: #fff;
+        }
+
+        .social-menu ul li:nth-child(1) a:hover {
+            background-color: #CD201F;
+        }
+
+        .social-menu ul li:nth-child(2) a:hover {
+            background-color: #d62976;
+        }
+
+        .social-menu ul li:nth-child(3) a:hover {
+            background-color: #3b5998;
+        }
+        .social-menu ul li:nth-child(4) a:hover {
+            background-color: #bd3817;
+        }
+        @media (max-width: 880px) {
+        
+        .footer-distributed{
+            font: bold 14px sans-serif;
+        }
+        @media (max-width: 991.98px){
+  .legacy-style.theme-theme4 .font_theme-0 h2 {
+   
+    margin-left: 23px;
   }
-  @media (max-width: 991.98px) {
-.legacy-style.theme-theme4 .font_theme-0 h4 {
-    line-height: 1.84;
-    font-size: 15px;
-    margin-left: 15px;
 }
-  }
-	
-	/* Footer Center */
-	
-	.copyrights{
-		width: 100%;
-		height:20px;
-		background-color: #411F1F;
-	}
-	.footer-distributed .footer-links a:before {
-	  content: "|";
-	  font-weight:30;
-	  font-size: 20px;
-	  left: 0;
-	  color: #411F1F;
-	  display: inline-block;
-	  padding-right: 3px;
-	}
-	.footer-links a{
-		font-family: 'Titillium Web', sans-serif;
-	  font-size:15px;
-	  color:#411F1F;
-		text-align: center;
-	  }
-	.footer-distributed .footer-links .link-1:before {
-	  content: none;
-	}
-	i{
-	  width:600%;
-	  
-	}
-	/* Footer Right */
-	
-	.footer-distributed .footer-right{
-		width: 90%;
-	}
-	
-	@media (max-width: 880px) {
-	
-		.footer-distributed{
-			font: bold 14px sans-serif;
-		}
-	
-		.footer-distributed .footer-left,
-		.footer-distributed .footer-center,
-		.footer-distributed .footer-right{
-			display: block;
-			width: 100%;
-			
-			text-align: center;
-		}
-	  
-		
-	
-	  .footer-links{
-		font-family: 'Titillium Web', sans-serif;
-	  font-size:12px;
-	  color:#411F1F;
-		text-align: center;
-	  }
-	}
-	
-	</style>
+        .footer-distributed .footer-left,
+        .footer-distributed .footer-center,
+        .footer-distributed .footer-right, .social-menu ul
+        {
+            display: block;
+            width: 100%;
+            
+            text-align: center;
+        }
+      
+        
+    
+      .footer-links{
+        font-family: 'Titillium Web', sans-serif;
+      font-size:12px;
+      color:#411F1F;
+        text-align: center;
+      }
+    }
+
+    </style>
 <style class="js-dom-cleanup">
 		a,
 		.dropdown-menu {
@@ -768,51 +791,30 @@ input[type=file]::file-selector-button:hover {
   </div>
   
   
-  <footer>
-          
-    <footer class="footer-distributed">
-    
-      <div class="footer-left">
-    
-      <h3 style="font-family: 'Playfair Display', serif;color:#411F1F">Zappy Photogrphy<span><img style="height: 20vh;" src="blob:https://web.whatsapp.com/d851746e-1788-415d-b1b7-7313a8875da7" alt=""></span></h3>
-    
-      <p class="footer-links">
-        <a href="/" class="link-1">Home</a>
-    
-        <a href="/moments">Moments</a>
-    
-        <a href="/about">AboutUs</a>
-    
-        <a href="/contactus">ContactUs</a>
-    
-        
-      </p>
-    
-      <p class="footer-company-name" style="font-family: 'Titillium Web', sans-serif; ;">203, 1st floor,vignesh complex, veerappan palayam pirivu,perudurai road , Erode, India, Tamil Nadu</p>
-       <h4 style="font-family: 'Titillium Web', sans-serif; color:#411F1F;font-size:15px;">
-    098948 11888</h4>
-    <h4 style="font-family: 'Titillium Web', sans-serif; color:#411F1F;font-size:12px;">Reach Us At:</h4>
-       
-       
-      <p class="footer-links" style="font-family: 'Titillium Web', sans-serif; color:#411F1F;">
-        <a href="#" class="link-1">Youtube</a>
-    
-        <a href="#">Instagram</a>
-    
-        <a href="#">Facebook</a>
-    
-        <a href="#">E-mail</a>
-    
-        
-      </p>
-      </div>
-      
-      
-    
-    
-    </footer>
-    <div class="copyrights"> </div>
-    
+  <footer class="footer-distributed">
+	<div class="footer-left">
+		<h3 style="font-family: 'Playfair Display', serif; color: #411F1F; font-size: 2.2rem;">Zappy Photography</h3>
+		<p class="footer-links">
+			<a href="/" class="link-1">Home</a>
+			<a href="/moments">Moments</a>
+			<a href="/about">About Us</a>
+			<a href="/Contactus">Contact Us</a>
+		</p>
+		<p class="footer-company-name" style="font-family: 'Titillium Web', sans-serif;">203, 1st floor, Vignesh Complex, Veerappan Palayam Pirivu, Perudurai Road, Erode, India, Tamil Nadu</p>
+		<h4 style="font-family: 'Titillium Web', sans-serif; color: #411F1F; font-size: 15px;">098948 11888</h4>
+		<h4 style="font-family: 'Titillium Web', sans-serif; color: #411F1F; font-size: 12px;">Reach Us At:</h4>
+
+		<div class="social-menu">
+			<ul>
+				<li><a href="https://youtube.com/@zappyphotography6864?si=v22xcj4-VFXHbz7R" target="_blank"><i class="fab fa-youtube"></i></a></li>
+				<li><a href="https://www.instagram.com/zappyphotography/?igshid=MzRlODBiNWFlZA%3D%3D" target="_blank"><i class="fab fa-instagram"></i></a></li>
+				<li><a href="https://www.facebook.com/mohan.raj.902266/?show_switched_toast=0&show_invite_to_follow=0&show_switched_tooltip=0&show_podcast_settings=0&show_community_review_changes=0&show_community_rollback=0&show_follower_visibility_disclosure=0" target="_blank"><i class="fab fa-facebook"></i></a></li>
+				<li><a href="photographyzappy@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="copyrights"></div>
     
     
     
